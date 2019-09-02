@@ -1,7 +1,7 @@
 # Aplicação de Transações
 
 ## Sobre a Aplicação
-- Aplicação que realiza transações de compra e venda persistindo os dados no LocalStorage, após consulta esses dados são apresentado em uma lista.
+- Aplicação que realiza transações de compra e venda persistindo os dados no LocalStorage, após consulta esses dados são apresentados em uma lista.
 
 ## Primeiros passos após clonar o projeto
 ### Verificar se possue node e npm instalados.
