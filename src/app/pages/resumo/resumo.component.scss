@@ -1,0 +1,19 @@
+@import "../../../assets/styles/base/vars";
+@import "../../../assets/styles/base/mixins";
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap");
+
+.resumo {
+    background: #e8e8e8;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    margin: 85px 15px;
+    max-width: 1100px;
+    padding: 100px 50px;
+    text-align: center;
+    @include border-radius(5px);
+
+    @media (min-width: $mindesktop) {
+        box-sizing: border-box;
+        margin: 85px auto;
+    }
+}

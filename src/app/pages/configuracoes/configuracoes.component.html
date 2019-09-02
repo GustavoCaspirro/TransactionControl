@@ -1,0 +1,67 @@
+<section class="transaction">
+    <div class="transaction__add">
+        <form (ngSubmit)="onSubmit()" #transactionForm="ngForm" class="form">
+            <h2 class="transaction__title transaction__title--new">Nova Transação</h2>
+            <div class="wrapper">
+                <div class="form__group">
+                    <label for="exampleInputEmail1">Tipo de Transação</label>
+                    <select class="form__group__select" id="typeTransaction" [(ngModel)]="model.typeTransaction" name="typeTransaction" #opt="ngModel" required>
+                        <option *ngFor="let option of options" [value]="option">{{option}}</option>
+                    </select>
+                </div>
+                <div class="form__group">
+                    <label for="exampleInputPassword1">Nome da mercadoria</label>
+                    <input type="text" class="form__group__input" [(ngModel)]="model.nameProduct" name="nameProduct" id="nameProduct"
+                        placeholder="Digite a mercadoria" maxlength="100" required>
+                </div>
+                <div class="form__group">
+                    <label for="exampleInputPassword1">Valor</label>
+                    <input type="text" class="form__group__input" currencyMask [(ngModel)]="model.priceProduct"
+                    [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                    name="priceProduct" id="priceProduct" placeholder="Digite o valor"
+                        required>
+                </div>
+            </div>
+            <button type="submit" [disabled]="!transactionForm.form.valid" class="btn">Adicionar transação</button>
+        </form>
+    </div>
+
+    <div class="transaction__statement">
+        <h2 class="transaction__title transaction__title--extract">Extrato de Transações</h2>
+        <div class="transaction__statement__content">
+            <div class="product">
+                <div class="product__title">
+                    <div class="type">
+                        <span>Mercadoria</span>
+                    </div>
+                    <div>
+                        <span class="total">Total</span>
+                    </div>
+                </div>
+                <div class="product__item--empty" [hidden]="transactions.length > 0">
+                    Nenhuma transação realizada.
+                </div>
+                <div class="product__item" *ngFor="let item of transactions" [ngClass]="item.typeTransaction === 'Compra' ? 'buy':'sell'">
+                    <div class="detail">
+                        <span class="ico-item">{{ item.typeTransaction == 'Compra' ? '-' : '+' }}</span>
+                        <span>{{ item.nameProduct }}</span>
+                    </div>
+                    <div class="price">
+                        <span>{{ item.priceProduct | currency:'BRL':'symbol':'0.0-2':'pt' }}</span>
+                    </div>
+                </div>
+
+                <hr />
+                <div class="product__total">
+                    <div class="type">
+                        <span class="total">Total</span>
+                    </div>
+                    <div class="product__total__value">
+                        <span class="label">{{ result | currency:'BRL':'symbol':'0.0-2':'pt'}}</span>
+                        <span class="gain">{{ result === 0 ? '' : result >= 0 ? '[Lucro]' : '[Prejuízo]' }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
