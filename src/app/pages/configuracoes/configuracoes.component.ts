@@ -20,17 +20,17 @@ export class ConfiguracoesComponent implements OnInit {
     this.valueTotal();
   }
 
-  options = ['Compra', 'Venda'];
-  model = new newTransaction(this.options[0], '', null);
-  result = 0;
+  options: Array<string> = ['Compra', 'Venda'];
+  model: newTransaction = new newTransaction(this.options[0], '', null);
+  result: number = 0;
 
   /**
    * Método para validação do formulário
    */
-  onSubmit() {
-    const dataTransaction = this.getData();
+  onSubmit(): void {
+    const dataTransaction: any = this.getData();
 
-    const listProduct = {
+    const listProduct: any = {
       typeTransaction: this.model.typeTransaction,
       nameProduct: this.model.nameProduct,
       priceProduct: this.model.priceProduct
@@ -45,23 +45,23 @@ export class ConfiguracoesComponent implements OnInit {
   /**
    * Método que chama o serviço storageService
    */
-  getData() {
+  getData(): any {
     return this.storageService.getData('Transações');
   }
 
   /**
    * Calcula o valor total das transações;
    */
-  valueTotal() {
-    let i = 0;
-    const transactionLength = this.transactions.length;
-    for (i; i < transactionLength; i++) {
-      if (i === 0) { this.result = 0; }
-      this.transactions[i].priceProduct = parseFloat(this.transactions[i].priceProduct);
-      if (this.transactions[i].typeTransaction === 'Compra') {
-        this.result -= (+this.transactions[i].priceProduct);
+  valueTotal(): Number {
+    let index: number = 0;
+    const transactionLength: Number = this.transactions.length;
+    for (index; index < transactionLength; index++) {
+      if (index === 0) { this.result = 0; }
+      this.transactions[index].priceProduct = parseFloat(this.transactions[index].priceProduct);
+      if (this.transactions[index].typeTransaction === 'Compra') {
+        this.result -= (+this.transactions[index].priceProduct);
       } else {
-        this.result += this.transactions[i].priceProduct;
+        this.result += this.transactions[index].priceProduct;
       }
     }
     return this.result;

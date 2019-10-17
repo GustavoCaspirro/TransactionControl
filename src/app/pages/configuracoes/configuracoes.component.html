@@ -29,39 +29,43 @@
     <div class="transaction__statement">
         <h2 class="transaction__title transaction__title--extract">Extrato de Transações</h2>
         <div class="transaction__statement__content">
-            <div class="product">
-                <div class="product__title">
-                    <div class="type">
-                        <span>Mercadoria</span>
-                    </div>
-                    <div>
-                        <span class="total">Total</span>
-                    </div>
-                </div>
-                <div class="product__item--empty" [hidden]="transactions.length > 0">
-                    Nenhuma transação realizada.
-                </div>
-                <div class="product__item" *ngFor="let item of transactions" [ngClass]="item.typeTransaction === 'Compra' ? 'buy':'sell'">
-                    <div class="detail">
-                        <span class="ico-item">{{ item.typeTransaction == 'Compra' ? '-' : '+' }}</span>
-                        <span>{{ item.nameProduct }}</span>
-                    </div>
-                    <div class="price">
-                        <span>{{ item.priceProduct | currency:'BRL':'symbol':'0.0-2':'pt' }}</span>
-                    </div>
-                </div>
+            <table class="product">
+                <thead class="product__title">
+                    <tr class="type">
+                        <th>Mercadoria</th>
+                        <th class="total">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="product__item--empty" [hidden]="transactions.length > 0">
+                        Nenhuma transação realizada.
+                    </tr>
+                    <tr class="product__item" *ngFor="let item of transactions" [ngClass]="item.typeTransaction === 'Compra' ? 'buy':'sell'">
+                        <td class="detail">
+                            <span class="ico-item">{{ item.typeTransaction == 'Compra' ? '-' : '+' }}</span>
+                            <span>{{ item.nameProduct }}</span>
+                        </td>
+                        <td class="price">
+                            <span>{{ item.priceProduct | currency:'BRL':'symbol':'0.0-2':'pt' }}</span>
+                        </td>
+                    </tr>
+                </tbody>
 
                 <hr />
-                <div class="product__total">
-                    <div class="type">
-                        <span class="total">Total</span>
-                    </div>
-                    <div class="product__total__value">
-                        <span class="label">{{ result | currency:'BRL':'symbol':'0.0-2':'pt'}}</span>
-                        <span class="gain">{{ result === 0 ? '' : result >= 0 ? '[Lucro]' : '[Prejuízo]' }}</span>
-                    </div>
-                </div>
-            </div>
+                <tfoot class="product__total">
+                    <tr class="type">
+                        <th class="total">Total</th>
+
+                        <th class="label">
+                            {{ result | currency:'BRL':'symbol':'0.0-2':'pt'}}
+                            <span class="gain">{{ result === 0 ? '' : result >= 0 ? '[Lucro]' : '[Prejuízo]' }}</span>
+                        </th>
+                    </tr>
+                    <!-- <div class="product__total__value">
+                        
+                    </div> -->
+                </tfoot>
+            </table>
         </div>
     </div>
 </section>

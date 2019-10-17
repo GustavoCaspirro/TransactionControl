@@ -18,7 +18,7 @@ export class StorageService {
    * @param key Nome da chave que você deseja criar ou alterar.
    * @param data Valor da chave que você está criando ou atualizando.
    */
-  setData(key: string, data: any) {
+  setData(key: string, data: any): void {
     localStorage.setItem(key, JSON.stringify(data));
   }
 }

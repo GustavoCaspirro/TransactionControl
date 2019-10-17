@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit {
    * Método para fechar o menu ao clicar sobre um item no mesmo
    */
   closeMenu() {
-    const inputMenu = document.getElementsByClassName('input-menu')[0] as HTMLInputElement;
+    const inputMenu: HTMLInputElement = document.getElementsByClassName('input-menu')[0] as HTMLInputElement;
     if(inputMenu.checked === true) {
       inputMenu.checked = false;
     }
