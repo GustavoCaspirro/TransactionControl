@@ -7,14 +7,18 @@
         <span></span>
 
         <ul class="menu__items">
-            <li class="menu__items__item"><a [routerLink]="'/resumo'"
-                routerLinkActive="router-link-active" (click)="this.closeMenu()">Resumo</a>
+            <li
+                class="menu__items__item"
+                *ngFor="let item of itemsMenu"
+            >
+                <a
+                    [routerLink]="item.rota"
+                    routerLinkActive="router-link-active"
+                    (click)="this.closeMenu()"
+                >
+                 {{ item.name }}
+                </a>
             </li>
-            <li class="menu__items__item"><a [routerLink]="'/dashboard'"
-                routerLinkActive="router-link-active" (click)="this.closeMenu()">Dashboard</a>
-            </li>
-            <li class="menu__items__item"><a [routerLink]="'/configuracoes'"
-                routerLinkActive="router-link-active" (click)="this.closeMenu()">Configurações</a></li>
         </ul>
     </div>
 </nav>

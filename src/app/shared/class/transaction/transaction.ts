@@ -1,4 +1,4 @@
-export class newTransaction {
+export class NewTransaction {
     constructor(
         public typeTransaction: string,
         public nameProduct: string,

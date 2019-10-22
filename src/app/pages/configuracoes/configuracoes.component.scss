@@ -2,6 +2,13 @@
 @import "../../../assets/styles/base/mixins";
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap");
 
+app-table-transaction {
+  width: 100%;
+  @media (min-width: $mindesktop) {
+    width: 60%;
+  }
+}
+
 .transaction {
   color: $color-font;
   font-family: "Lato", sans-serif;
@@ -136,93 +143,5 @@
         }
       }
     }
-  }
-
-  &__statement {
-    width: 100%;
-    @media (min-width: $mindesktop) {
-      width: 60%;
-    }
-
-    &__content {
-      @include flexbox();
-      @include justify-content(space-between);
-      .product {
-        width: 100%;
-
-        &__title,
-        &__item {
-          border-bottom: 1px solid #b1b1b1;
-          padding: 10px 0;
-          @include flexbox();
-          @include justify-content(space-between);
-
-          .ico-item {
-            margin: 0 10px;
-            min-width: 10px;
-          }
-        }
-
-        &__title,
-        &__total {
-          .type {
-            margin: 0 0 0 28px;
-          }
-        }
-
-        &__title {
-          font-weight: 700;
-          padding-right: 10px;
-        }
-
-        &__item {
-          .detail {
-            @include flexbox();
-            width: 60%;
-          }
-
-          .price {
-            padding-right: 10px;
-            text-align: right;
-            width: 40%;
-          }
-
-          &.buy { background: #ffdfdf; }
-
-          &.sell { background: #e4ffea; }
-
-          &--empty {
-            background: #f3f3f3;
-            margin-bottom: -3px;
-            padding: 30px 10px;
-            text-align: center;
-            @include transition(.3s);
-          }
-        }
-
-        &__total {
-          font-weight: 700;
-          padding: 0;
-          @include flexbox();
-          @include justify-content(space-between);
-
-          &__value {
-            padding-right: 10px;
-            text-align: right;
-            @include flexbox();
-            @include flex-direction(column);
-            .gain {
-              font-size: 10px;
-              font-weight: 400;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  hr {
-    color: #b1b1b1;
-    margin: 3px 0 15px;
   }
 }

@@ -1,0 +1,54 @@
+<div class="transaction__statement">
+    <h2 class="transaction__title transaction__title--extract">Extrato de Transações</h2>
+    <div class="transaction__statement__content">
+        <table class="product">
+            <thead class="product__title">
+                <tr class="type">
+                    <th>Mercadoria</th>
+                    <th class="total">Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr
+                    class="product__item"
+                    *ngFor="let item of transactions"
+                    [ngClass]="item.typeTransaction === 'Compra' ? 'buy':'sell'"
+                >
+                    <td class="detail">
+                        <span class="ico-item">
+                            {{ item.typeTransaction == 'Compra' ? '-' : '+' }}
+                        </span>
+                        <span>
+                            {{ item.nameProduct }}
+                        </span>
+                    </td>
+                    <td class="price">
+                        <span>
+                            {{ item.priceProduct | currency:'BRL':'symbol':'0.0-2':'pt' }}
+                        </span>
+                    </td>
+                </tr>
+                <tr
+                    class="product__item--empty"
+                    *ngIf="transactions.length <= 0"
+                >
+                    Nenhuma transação realizada.
+                </tr>
+            </tbody>
+
+            <hr />
+            <tfoot class="product__total">
+                <tr class="type">
+                    <th class="total">Total</th>
+                    <th class="label">
+                        {{ result | currency:'BRL':'symbol':'0.0-2':'pt'}}
+                        <span class="gain">
+                            {{ result === 0 ? '' : result >= 0 ? '[Lucro]' : '[Prejuízo]' }}
+                        </span>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

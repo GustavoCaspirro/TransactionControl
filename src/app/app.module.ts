@@ -13,6 +13,8 @@ import { ResumoComponent } from './pages/resumo';
 import { DashboardComponent } from './pages/dashboard';
 import { ConfiguracoesComponent } from './pages/configuracoes';
 import { MenuComponent } from './layout/menu';
+import { TableTransactionComponent } from './pages/configuracoes/table-transaction';
+import { StorageService } from './shared/services/storage/storage.service';
 
 registerLocaleData(localePt);
 
@@ -24,7 +26,8 @@ registerLocaleData(localePt);
     ResumoComponent,
     DashboardComponent,
     ConfiguracoesComponent,
-    MenuComponent
+    MenuComponent,
+    TableTransactionComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,9 @@ registerLocaleData(localePt);
     ReactiveFormsModule,
     NgxCurrencyModule
   ],
-  providers: [],
+  providers: [
+    StorageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,11 +6,14 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 
 import { StorageService } from '../../shared/services/storage/storage.service';
+import { TableTransactionComponent } from './table-transaction';
 
 registerLocaleData(localePt);
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TableTransactionComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
