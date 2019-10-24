@@ -4,15 +4,17 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgxCurrencyModule } from 'ngx-currency';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { TableTransactionComponent } from './table-transaction';
+import { FormAddTransactionComponent } from './form-add-transaction';
 
 import { StorageService } from '../../shared/services/storage/storage.service';
-import { TableTransactionComponent } from './table-transaction';
 
 registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
-    TableTransactionComponent
+    TableTransactionComponent,
+    FormAddTransactionComponent
   ],
   imports: [
     CommonModule,

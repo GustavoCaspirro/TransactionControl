@@ -2,6 +2,20 @@
 @import "../../../assets/styles/base/mixins";
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap");
 
+app-form-add-transaction {
+  width: 100%;
+  @media (min-width: $mintablet) {
+      margin-bottom: 32px;
+      width: 100%;
+  }
+
+  @media (min-width: $mindesktop) {
+      margin-bottom: 0;
+      margin-right: 2%;
+      width: 38%;
+  }
+}
+
 app-table-transaction {
   width: 100%;
   @media (min-width: $mindesktop) {
@@ -23,125 +37,8 @@ app-table-transaction {
     margin: 85px auto;
     padding: 0 15px;
   }
-
   @media (min-width: $mindesktop) {
     padding: 0;
     @include flex-direction(row);
-  }
-
-  &__title {
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 0;
-    text-align: center;
-    &--new {
-      display: none;
-      @media (min-width: $mintablet) {
-        display: block;
-      }
-    }
-
-    &--extract {
-      @media (min-width: $mintablet) {
-        margin-top: 19px;
-      }
-    }
-  }
-
-  &__add {
-    width: 100%;
-    @media (min-width: $mintablet) {
-      margin-bottom: 32px;
-      width: 100%;
-    }
-
-    @media (min-width: $mindesktop) {
-      margin-bottom: 0;
-      margin-right: 2%;
-      width: 38%;
-    }
-
-    .form {
-      border-bottom: 1px solid #949494;
-      margin-bottom: 32px;
-      padding: 18px 0 32px;
-      @media (min-width: $mintablet) {
-        border: 1px solid #949494;
-        margin-bottom: 0;
-        overflow: hidden;
-        padding: 18px 12px;
-        @include border-radius(4px);
-      }
-
-      .wrapper {
-        @media (min-width: $mintablet) {
-          @include flexbox();
-          @include justify-content(space-between);
-        }
-
-        @media (min-width: $mindesktop) {
-          display: block;
-        }
-      }
-
-      &__group {
-        margin-bottom: 12px;
-        @include flexbox();
-        @include flex-direction(column);
-
-        @media (min-width: $mintablet) {
-          width: 31%;
-        }
-
-        @media (min-width: $mindesktop) {
-          width: initial;
-        }
-
-        label {
-          margin-bottom: 5px;
-        }
-
-        &__select,
-        &__input {
-          border: 1px solid #c9c9c9;
-          padding: 8px 11px;
-          text-align: left !important;
-          @include border-radius(3px);
-        }
-      }
-
-      .btn {
-        background: $color-button;
-        border: none;
-        color: $color-font-white;
-        padding: 8px 11px;
-        width: 100%;
-        @include border-radius(3px);
-
-        &:hover {
-          background: $color-button-hover;
-          cursor: pointer;
-          @include transition(background 0.3s);
-        }
-
-        &[disabled] {
-          background: rgb(216, 216, 216);
-          &:hover {
-            background: rgb(216, 216, 216);
-            cursor: default;
-          }
-        }
-
-        @media (min-width: $mintablet) {
-          float: right;
-          width: 40%;
-        }
-
-        @media (min-width: $mindesktop) {
-          float: none;
-          width: 100%;
-        }
-      }
-    }
   }
 }

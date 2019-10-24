@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NewTransaction } from 'src/app/shared/class/transaction/transaction';
+import { StorageService } from 'src/app/shared/services/storage/storage.service';
 
 @Component({
   selector: 'app-table-transaction',
@@ -12,21 +13,29 @@ export class TableTransactionComponent implements OnInit, OnChanges {
   @Input()
   transaction: Array<NewTransaction>;
 
-  constructor() {
-  }
+  constructor(private storageService: StorageService) { }
 
   ngOnInit() {
     this.transactions = this.transaction;
+    this.transactions = this.getData();
     this.valueTotal();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.transactions = changes.transaction.currentValue;
+    this.transactions = this.getData();
     this.valueTotal();
   }
 
   removeData(item, transactions) {
     console.log(item, transactions);
+  }
+
+  /**
+   * Chama o serviço storageService para a função get
+   */
+  getData(): Array<NewTransaction> {
+    return this.storageService.getData('Transações');
   }
 
   /**
@@ -37,7 +46,7 @@ export class TableTransactionComponent implements OnInit, OnChanges {
   const transactionLength: number = this.transactions.length;
   for (index; index < transactionLength; index++) {
     if (index === 0) { this.result = 0; }
-    this.transactions[index].priceProduct = parseFloat(this.transactions[index].priceProduct);
+    this.transactions[index].priceProduct = this.transactions[index].priceProduct;
     if (this.transactions[index].typeTransaction === 'Compra') {
         this.result -= (+this.transactions[index].priceProduct);
     } else {

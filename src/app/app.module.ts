@@ -14,6 +14,7 @@ import { DashboardComponent } from './pages/dashboard';
 import { ConfiguracoesComponent } from './pages/configuracoes';
 import { MenuComponent } from './layout/menu';
 import { TableTransactionComponent } from './pages/configuracoes/table-transaction';
+import { FormAddTransactionComponent } from './pages/configuracoes/form-add-transaction';
 import { StorageService } from './shared/services/storage/storage.service';
 
 registerLocaleData(localePt);
@@ -27,7 +28,8 @@ registerLocaleData(localePt);
     DashboardComponent,
     ConfiguracoesComponent,
     MenuComponent,
-    TableTransactionComponent
+    TableTransactionComponent,
+    FormAddTransactionComponent
   ],
   imports: [
     BrowserModule,
