@@ -2,27 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ChangeItemMenuEvent } from '../../shared/interfaces/ChangeItemMenuEvent.interface';
 import { TypeItemsMenu } from '../../shared/interfaces/TypeItemsMenu';
 
+import { OptionsMenu } from './optionsMenu';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
+  itemsMenu: Array<TypeItemsMenu> = OptionsMenu;
 
-  itemsMenu: Array<TypeItemsMenu> = [
-    {
-      name: 'Resumo',
-      rota: '/resumo'
-    },
-    {
-      name: 'Dashboard',
-      rota: '/dashboard'
-    },
-    {
-      name: 'Configurações',
-      rota: '/configuracoes'
-    }
-  ];
   constructor() { }
 
   ngOnInit() {
@@ -37,5 +26,4 @@ export class MenuComponent implements OnInit {
       inputMenu.checked = false;
     }
   }
-
 }
