@@ -10,6 +10,8 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
 export class TableTransactionComponent implements OnInit, OnChanges {
   transactions: Array<NewTransaction> = new Array<NewTransaction>();
   result = 0;
+  keyLocalStorage = 'Transações';
+
   @Input()
   transaction: Array<NewTransaction>;
 
@@ -27,32 +29,52 @@ export class TableTransactionComponent implements OnInit, OnChanges {
     this.valueTotal();
   }
 
-  removeData(item, transactions) {
-    console.log(item, transactions);
+  /**
+   * Chama o serviço storageService para a função removeItemData
+   */
+  removeItemData(indexItem: number): void {
+    this.transactions = this.storageService.removeItemData(this.keyLocalStorage, indexItem);
+    this.valueTotal();
+  }
+
+  /**
+   * Chama o serviço storageService para a função removeData
+   */
+  removeData() {
+    this.transactions = this.storageService.removeData(this.keyLocalStorage);
+    this.valueTotal();
   }
 
   /**
    * Chama o serviço storageService para a função get
    */
   getData(): Array<NewTransaction> {
-    return this.storageService.getData('Transações');
+    return this.storageService.getData(this.keyLocalStorage);
   }
 
   /**
    * Calcula o valor total das transações;
    */
   valueTotal(): number {
-  let index = 0;
   const transactionLength: number = this.transactions.length;
-  for (index; index < transactionLength; index++) {
-    if (index === 0) { this.result = 0; }
-    this.transactions[index].priceProduct = this.transactions[index].priceProduct;
-    if (this.transactions[index].typeTransaction === 'Compra') {
-        this.result -= (+this.transactions[index].priceProduct);
-    } else {
-        this.result += this.transactions[index].priceProduct;
-    }
+
+  if (transactionLength === 0) {
+    return this.result = 0;
   }
+
+  this.transactions.forEach((transaction: NewTransaction, index: number) => {
+    if (index === 0) { this.result = 0; }
+
+    transaction.priceProduct = transaction.priceProduct;
+
+    if (transaction.typeTransaction === 'Compra') {
+      this.result -= (+transaction.priceProduct);
+    } else {
+      this.result += transaction.priceProduct;
+    }
+  });
+
   return this.result;
+
   }
 }

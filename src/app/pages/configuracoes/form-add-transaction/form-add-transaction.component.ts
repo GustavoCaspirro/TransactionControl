@@ -7,22 +7,21 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
   templateUrl: './form-add-transaction.component.html',
   styleUrls: ['./form-add-transaction.component.scss']
 })
-export class FormAddTransactionComponent implements OnInit, OnChanges {
+export class FormAddTransactionComponent implements OnInit {
     transactions: Array<NewTransaction> = new Array<NewTransaction>();
     options: Array<string> = ['Compra', 'Venda'];
     model: NewTransaction = new NewTransaction(this.options[0], '', null);
+
     @Input()
     transaction: Array<NewTransaction>;
-    @Output() responseTransaction = new EventEmitter();
+
+    @Output()
+    responseTransaction = new EventEmitter();
 
     constructor(private storageService: StorageService) { }
 
     ngOnInit() {
         this.transactions = this.getData();
-    }
-
-    ngOnChanges(changes: SimpleChanges) {
-      console.log(changes);
     }
 
     /**

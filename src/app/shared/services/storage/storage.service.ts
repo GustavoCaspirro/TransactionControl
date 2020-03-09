@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { NewTransaction } from '../../class/transaction/transaction';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,28 @@ export class StorageService {
    */
   setData(key: string, data: any): void {
     localStorage.setItem(key, JSON.stringify(data));
+  }
+
+  /**
+   * removeItemData no LocalStorage
+   * @param key Nome da chave que você deseja remover um item.
+   * @param indexItem Posição do item da chave que você está apagando.
+   */
+  removeItemData(key: string, indexItem: number): Array<NewTransaction> {
+    const transactionCurrent = this.getData(key);
+
+    transactionCurrent.splice(indexItem, 1);
+    this.setData(key, transactionCurrent);
+    return transactionCurrent;
+  }
+
+  /**
+   * removeItemData no LocalStorage
+   * @param key Nome da chave que você deseja remover.
+   */
+  removeData(key: string): Array<NewTransaction> {
+    localStorage.removeItem(key);
+    const transactionCurrent = this.getData(key);
+    return transactionCurrent;
   }
 }

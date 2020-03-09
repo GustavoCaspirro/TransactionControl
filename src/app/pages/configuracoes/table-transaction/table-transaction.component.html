@@ -1,5 +1,11 @@
 <div class="transaction__statement">
     <h2 class="transaction__title transaction__title--extract">Extrato de Transações</h2>
+    <span
+        class="transaction__remove-data"
+        (click)="removeData()"
+    >
+        Limpar Transações
+    </span>
     <div class="transaction__statement__content">
         <table class="product">
             <thead class="product__title">
@@ -12,7 +18,7 @@
             <tbody>
                 <tr
                     class="product__item"
-                    *ngFor="let item of transactions"
+                    *ngFor="let item of transactions; let i = index;"
                     [ngClass]="item.typeTransaction === 'Compra' ? 'buy':'sell'"
                 >
                     <td class="detail">
@@ -27,6 +33,9 @@
                         <span>
                             {{ item.priceProduct | currency:'BRL':'symbol':'0.0-2':'pt' }}
                         </span>
+                    </td>
+                    <td class="apagar-item">
+                        <span (click)="removeItemData(i)">x</span>
                     </td>
                 </tr>
                 <tr
