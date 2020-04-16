@@ -1,5 +1,6 @@
-import { Component, OnInit, SimpleChanges, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NewTransaction } from 'src/app/shared/class/transaction/transaction';
+import { OptionsTransaction } from 'src/app/shared/enums/options.enum';
 import { StorageService } from 'src/app/shared/services/storage/storage.service';
 
 @Component({
@@ -8,44 +9,44 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
   styleUrls: ['./form-add-transaction.component.scss']
 })
 export class FormAddTransactionComponent implements OnInit {
-    transactions: Array<NewTransaction> = new Array<NewTransaction>();
-    options: Array<string> = ['Compra', 'Venda'];
-    model: NewTransaction = new NewTransaction(this.options[0], '', null);
+  transactions: Array<NewTransaction> = new Array<NewTransaction>();
+  options: Array<string> = [OptionsTransaction.Compra, OptionsTransaction.Venda];
+  model: NewTransaction = new NewTransaction(this.options[0], '', null);
 
-    @Input()
-    transaction: Array<NewTransaction>;
+  @Input()
+  transaction: Array<NewTransaction>;
 
-    @Output()
-    responseTransaction = new EventEmitter();
+  @Output()
+  responseTransaction = new EventEmitter();
 
-    constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService) { }
 
-    ngOnInit() {
-        this.transactions = this.getData();
-    }
+  ngOnInit() {
+    this.transactions = this.getData();
+  }
 
-    /**
-     * Chama o serviço storageService para a função get
-     */
-    getData(): Array<NewTransaction> {
-        return this.storageService.getData('Transações');
-    }
+  /**
+   * Chama o serviço storageService para a função get
+   */
+  getData(): Array<NewTransaction> {
+    return this.storageService.getData('Transações');
+  }
 
-    /**
-     * Validação do formulário
-     */
-    onSubmit(): void {
-        const dataTransaction: Array<NewTransaction> = this.getData();
+  /**
+   * Validação do formulário
+   */
+  onSubmit(): void {
+    const dataTransaction: Array<NewTransaction> = this.getData();
 
-        const listProduct: NewTransaction = {
-            typeTransaction: this.model.typeTransaction,
-            nameProduct: this.model.nameProduct,
-            priceProduct: this.model.priceProduct
-        };
+    const listProduct: NewTransaction = {
+      typeTransaction: this.model.typeTransaction,
+      nameProduct: this.model.nameProduct,
+      priceProduct: this.model.priceProduct
+    };
 
-        dataTransaction.unshift(listProduct);
-        this.storageService.setData('Transações', dataTransaction);
-        this.transactions = this.getData();
-        this.responseTransaction.emit(this.transactions);
-    }
+    dataTransaction.unshift(listProduct);
+    this.storageService.setData('Transações', dataTransaction);
+    this.transactions = this.getData();
+    this.responseTransaction.emit(this.transactions);
+  }
 }

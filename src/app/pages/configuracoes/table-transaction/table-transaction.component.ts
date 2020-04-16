@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NewTransaction } from 'src/app/shared/class/transaction/transaction';
+import { OptionsTransaction } from 'src/app/shared/enums/options.enum';
 import { StorageService } from 'src/app/shared/services/storage/storage.service';
 
 @Component({
@@ -7,21 +8,15 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
   templateUrl: './table-transaction.component.html',
   styleUrls: ['./table-transaction.component.scss']
 })
-export class TableTransactionComponent implements OnInit, OnChanges {
+export class TableTransactionComponent implements OnChanges {
   transactions: Array<NewTransaction> = new Array<NewTransaction>();
   result = 0;
-  keyLocalStorage = 'Transações';
+  readonly keyLocalStorage = 'Transações';
 
   @Input()
   transaction: Array<NewTransaction>;
 
   constructor(private storageService: StorageService) { }
-
-  ngOnInit() {
-    this.transactions = this.transaction;
-    this.transactions = this.getData();
-    this.valueTotal();
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.transactions = changes.transaction.currentValue;
@@ -56,25 +51,22 @@ export class TableTransactionComponent implements OnInit, OnChanges {
    * Calcula o valor total das transações;
    */
   valueTotal(): number {
-  const transactionLength: number = this.transactions.length;
+    const transactionLength: number = this.transactions.length;
 
-  if (transactionLength === 0) {
-    return this.result = 0;
-  }
-
-  this.transactions.forEach((transaction: NewTransaction, index: number) => {
-    if (index === 0) { this.result = 0; }
-
-    transaction.priceProduct = transaction.priceProduct;
-
-    if (transaction.typeTransaction === 'Compra') {
-      this.result -= (+transaction.priceProduct);
-    } else {
-      this.result += transaction.priceProduct;
+    if (transactionLength === 0) {
+      return this.result = 0;
     }
-  });
 
-  return this.result;
+    this.transactions.forEach((transaction: NewTransaction, index: number) => {
+      if (index === 0) { this.result = 0; }
 
+      transaction.priceProduct = transaction.priceProduct;
+
+      transaction.typeTransaction === OptionsTransaction.Compra ?
+        this.result -= (+transaction.priceProduct) :
+        this.result += transaction.priceProduct;
+    });
+
+    return this.result;
   }
 }

@@ -10,7 +10,7 @@ export class StorageService {
    * getData no LocalStorage
    * @param key Nome da chave cujo valor quer obter
    */
-  getData(key: string): any {
+  getData(key: string): NewTransaction {
     return JSON.parse(localStorage.getItem(key) || '[]');
   }
 
@@ -19,7 +19,7 @@ export class StorageService {
    * @param key Nome da chave que você deseja criar ou alterar.
    * @param data Valor da chave que você está criando ou atualizando.
    */
-  setData(key: string, data: any): void {
+  setData(key: string, data: Array<NewTransaction>): void {
     localStorage.setItem(key, JSON.stringify(data));
   }
 
@@ -37,7 +37,7 @@ export class StorageService {
   }
 
   /**
-   * removeItemData no LocalStorage
+   * removeData no LocalStorage
    * @param key Nome da chave que você deseja remover.
    */
   removeData(key: string): Array<NewTransaction> {

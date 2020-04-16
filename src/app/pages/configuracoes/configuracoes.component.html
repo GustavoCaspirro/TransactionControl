@@ -1,12 +1,9 @@
 <section class="transaction">
-    <app-form-add-transaction
-        [transaction]="transactions"
-        (responseTransaction)="reciverTransaction($event)"
-    > 
-    </app-form-add-transaction>
-
-    <app-table-transaction
-        [transaction]="transactions"
-    >
-    </app-table-transaction>
+  <app-form-add-transaction
+    [transaction]="transactions"
+    (responseTransaction)="reciverTransaction($event)"
+  >
+  </app-form-add-transaction>
+  <app-table-transaction [transaction]="transactions">
+  </app-table-transaction>
 </section>

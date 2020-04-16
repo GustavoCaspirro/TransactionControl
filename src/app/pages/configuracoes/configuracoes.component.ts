@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NewTransaction } from 'src/app/shared/class/transaction/transaction';
 
 @Component({
@@ -6,15 +6,12 @@ import { NewTransaction } from 'src/app/shared/class/transaction/transaction';
   templateUrl: './configuracoes.component.html',
   styleUrls: ['./configuracoes.component.scss']
 })
-export class ConfiguracoesComponent implements OnInit {
-    transactions: Array<NewTransaction> = new Array<NewTransaction>();
+export class ConfiguracoesComponent {
+  transactions: Array<NewTransaction> = new Array<NewTransaction>();
 
-    constructor() { }
+  constructor() { }
 
-    ngOnInit() {
-    }
-
-    reciverTransaction(responseTransaction) {
-        this.transactions = responseTransaction;
-    }
+  reciverTransaction(responseTransaction: Array<NewTransaction>) {
+    this.transactions = responseTransaction;
+  }
 }
