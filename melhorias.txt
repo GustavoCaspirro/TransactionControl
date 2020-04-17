@@ -1,0 +1,16 @@
+Melhorias:
+	Dinheiro sempre tem que mostrar duas casas decimais
+	Não pode permitir inserção sem valor
+	Limitar o valor a ser inserido (vide imagem)
+	Revisar máscara: eu consegui inserir 0,1 ao digitar zero, selecionar tudo e digitar 1, aí ele perde uma casa decimal
+	Fazer o teste passar e escrever testes reais :stuck_out_tongue:
+	Corrigir tipagens no serviço de storage
+	Utilize a modularização do angular (Criou configurações module mas não tá usando)
+	table-transaction.component.ts:53 valueTotal - atribuição de variável desnecessária (transactionLength); remover index do forEach; revisar linha 63 (WTF hahaha); trocar forEach por reduce; revisar ngOnChanges :eyes:
+	form-add-transaction.component.ts transactions VS transaction (confuso, usar apenas uma); trocar inicialização do options para poder aceitar mais opções caso o enum seja alterado (loop do enum); usar this.getData() menos vezes (de preferencia nenhum ahhaha);
+Desafios:
+	Criptografar dados no storage
+	Permitir edição de transações
+	Ordenar por inserção, alfabeticamente ou por valor (todos podendo fazer normal e de trás pra frente tbm)
+	Troca os spans vazios do menu por pseudo elementos
+	Criar um serviço para cuidar das transações por observable ao invés de input/output entre componentes
