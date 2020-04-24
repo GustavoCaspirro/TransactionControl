@@ -7,11 +7,11 @@ import { NewTransaction } from 'src/app/shared/class/transaction/transaction';
   styleUrls: ['./configuracoes.component.scss']
 })
 export class ConfiguracoesComponent {
-  transactions: Array<NewTransaction> = new Array<NewTransaction>();
+  arrayTransaction: Array<NewTransaction> = new Array<NewTransaction>();
 
   constructor() { }
 
   reciverTransaction(responseTransaction: Array<NewTransaction>) {
-    this.transactions = responseTransaction;
+    this.arrayTransaction = responseTransaction;
   }
 }

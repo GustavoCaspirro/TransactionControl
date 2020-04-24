@@ -9,7 +9,7 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
   styleUrls: ['./form-add-transaction.component.scss']
 })
 export class FormAddTransactionComponent implements OnInit {
-  transactions: Array<NewTransaction> = new Array<NewTransaction>();
+  arrayTransaction: Array<NewTransaction> = new Array<NewTransaction>();;
   options: Array<string> = [OptionsTransaction.Compra, OptionsTransaction.Venda];
   model: NewTransaction = new NewTransaction(this.options[0], '', null);
 
@@ -22,13 +22,13 @@ export class FormAddTransactionComponent implements OnInit {
   constructor(private storageService: StorageService) { }
 
   ngOnInit() {
-    this.transactions = this.getData();
+    this.arrayTransaction = this.getData();
   }
 
   /**
    * Chama o serviço storageService para a função get
    */
-  getData(): Array<NewTransaction> {
+  getData(): NewTransaction[] {
     return this.storageService.getData('Transações');
   }
 
@@ -36,7 +36,7 @@ export class FormAddTransactionComponent implements OnInit {
    * Validação do formulário
    */
   onSubmit(): void {
-    const dataTransaction: Array<NewTransaction> = this.getData();
+    const dataTransaction: NewTransaction[] = this.getData();
 
     const listProduct: NewTransaction = {
       typeTransaction: this.model.typeTransaction,
@@ -46,7 +46,7 @@ export class FormAddTransactionComponent implements OnInit {
 
     dataTransaction.unshift(listProduct);
     this.storageService.setData('Transações', dataTransaction);
-    this.transactions = this.getData();
-    this.responseTransaction.emit(this.transactions);
+    this.arrayTransaction = this.getData();
+    this.responseTransaction.emit(this.arrayTransaction);
   }
 }

@@ -1,9 +1,9 @@
 <section class="transaction">
   <app-form-add-transaction
-    [transaction]="transactions"
+    [transaction]="arrayTransaction"
     (responseTransaction)="reciverTransaction($event)"
   >
   </app-form-add-transaction>
-  <app-table-transaction [transaction]="transactions">
+  <app-table-transaction [transaction]="arrayTransaction">
   </app-table-transaction>
 </section>

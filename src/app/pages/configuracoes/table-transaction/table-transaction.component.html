@@ -17,7 +17,7 @@
       <tbody>
         <tr
           class="product__item"
-          *ngFor="let item of transactions; let i = index;"
+          *ngFor="let item of arrayTransaction; let i = index;"
           [ngClass]="item.typeTransaction === 'Compra' ? 'buy':'sell'"
         >
           <td class="detail">
@@ -30,7 +30,7 @@
           </td>
           <td class="price">
             <span>
-              {{ item.priceProduct | currency:'BRL':'symbol':'0.0-2':'pt' }}
+              {{ item.priceProduct | currency:'BRL':'symbol':'1.2-2':'pt' }}
             </span>
           </td>
           <td class="apagar-item">
@@ -39,7 +39,7 @@
         </tr>
         <tr
           class="product__item--empty"
-          *ngIf="transactions.length <= 0"
+          *ngIf="arrayTransaction.length <= 0"
         >
           Nenhuma transação realizada.
         </tr>
@@ -49,7 +49,7 @@
         <tr class="type">
           <th class="total">Total</th>
           <th class="label">
-            {{ result | currency:'BRL':'symbol':'0.0-2':'pt'}}
+            {{ result | currency:'BRL':'symbol':'1.2-2':'pt'}}
             <span class="gain">
               {{ result === 0 ? '' : result >= 0 ? '[Lucro]' : '[Prejuízo]' }}
             </span>

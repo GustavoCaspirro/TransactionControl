@@ -1,66 +1,73 @@
 <div class="transaction__add">
-    <form (ngSubmit)="onSubmit()" #transactionForm="ngForm" class="form">
-        <h2 class="transaction__title transaction__title--new">
-            Nova Transação
-        </h2>
-        <div class="wrapper">
-            <div class="form__group">
-                <label for="exampleInputEmail1">
-                    Tipo de Transação
-                </label>
-                <select
-                    class="form__group__select"
-                    id="typeTransaction"
-                    [(ngModel)]="model.typeTransaction"
-                    name="typeTransaction"
-                    #opt="ngModel"
-                    required
-                >
-                    <option
-                        *ngFor="let option of options"
-                        [value]="option">
-                        {{option}}
-                    </option>
-                </select>
-            </div>
-            <div class="form__group">
-                <label for="exampleInputPassword1">
-                    Nome da mercadoria
-                </label>
-                <input
-                    type="text"
-                    class="form__group__input"
-                    [(ngModel)]="model.nameProduct"
-                    name="nameProduct"
-                    id="nameProduct"
-                    placeholder="Digite a mercadoria"
-                    maxlength="100" required
-                >
-            </div>
-            <div class="form__group">
-                <label for="exampleInputPassword1">
-                    Valor
-                </label>
-                <input
-                    autocomplete="off"
-                    type="text"
-                    class="form__group__input"
-                    currencyMask
-                    [(ngModel)]="model.priceProduct"
-                    [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
-                    name="priceProduct"
-                    id="priceProduct"
-                    placeholder="Digite o valor"
-                    required
-                >
-            </div>
-        </div>
-        <button
-            type="submit"
-            [disabled]="!transactionForm.form.valid"
-            class="btn"
+  <form
+    #transactionForm="ngForm"
+    (ngSubmit)="onSubmit()"
+    class="form"
+  >
+    <h2 class="transaction__title transaction__title--new">
+      Nova Transação
+    </h2>
+    <div class="wrapper">
+      <div class="form__group">
+        <label for="exampleInputEmail1">
+          Tipo de Transação
+        </label>
+        <select
+          class="form__group__select"
+          id="typeTransaction"
+          [(ngModel)]="model.typeTransaction"
+          name="typeTransaction"
+          #opt="ngModel"
+          required
         >
-            Adicionar transação
-        </button>
-    </form>
+          <option
+            *ngFor="let option of options"
+            [value]="option"
+          >
+            {{option}}
+          </option>
+        </select>
+      </div>
+      <div class="form__group">
+        <label for="exampleInputPassword1">
+          Nome da mercadoria
+        </label>
+        <input
+          type="text"
+          class="form__group__input"
+          [(ngModel)]="model.nameProduct"
+          name="nameProduct"
+          id="nameProduct"
+          placeholder="Digite a mercadoria"
+          maxlength="100"
+          required
+        >
+      </div>
+      <div class="form__group">
+        <label for="exampleInputPassword1">
+          Valor
+        </label>
+        <input
+          autocomplete="off"
+          type="text"
+          class="form__group__input"
+          [(ngModel)]="model.priceProduct"
+          currencyMask
+          [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          name="priceProduct"
+          id="priceProduct"
+          placeholder="Digite o valor"
+          required
+          maxlength="20"
+        >
+      </div>
+    </div>
+    <button
+      type="submit"
+      [disabled]="!transactionForm.form.valid || transactionForm.form.value.priceProduct === 0"
+      class="btn"
+    >
+      Adicionar transação
+    </button>
+  </form>
 </div>
