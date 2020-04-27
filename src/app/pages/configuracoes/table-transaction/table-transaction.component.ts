@@ -57,12 +57,12 @@ export class TableTransactionComponent implements OnInit, OnChanges {
   valueTotal(): number {
     this.result = 0;
 
-    this.arrayTransaction.forEach((transaction: NewTransaction) => {
-      transaction.typeTransaction === OptionsTransaction.Compra ?
-        this.result -= (+transaction.priceProduct) :
-        this.result += transaction.priceProduct;
+    return this.result = this.arrayTransaction.reduce((previousValue: number, currentValue: NewTransaction) => {
+      if (currentValue.typeTransaction === OptionsTransaction.Compra) {
+        return previousValue -= (+currentValue.priceProduct);
+      } else {
+        return previousValue += currentValue.priceProduct;
+      }
     }, 0);
-
-    return this.result;
   }
 }

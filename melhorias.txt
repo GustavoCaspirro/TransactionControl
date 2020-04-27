@@ -1,13 +1,9 @@
 Melhorias:
-	-Revisar máscara: --- olhar lib ngx-currency
-    eu consegui inserir 0,1 ao digitar zero,
-    selecionar tudo e digitar 1, aí ele perde uma casa decimal
 	-Fazer o teste passar e escrever testes reais
 	-Utilize a modularização do angular (Criou configurações module mas não tá usando)
-	-table-transaction.component.ts --> trocar forEach por reduce;
+
 	- form-add-transaction.component.ts
-    trocar inicialização do options para poder aceitar mais opções caso o enum seja alterado (loop do enum);
-    usar this.getData() menos vezes (de preferencia nenhum ahhaha);
+    usar this.getData() menos vezes (de preferencia nenhum);
 
 Desafios:
 	-Criptografar dados no storage
@@ -25,6 +21,7 @@ Feitos
 -Não pode permitir inserção sem valor --- ok
 -Limitar o valor a ser inserido (vide imagem) --- ok
 -Corrigir tipagens no serviço de storage --- ok
+-table-transaction.component.ts --> trocar forEach por reduce; --- ok
 
 -table-transaction.component.ts
   valueTotal - atribuição de variável desnecessária (transactionLength); --- ok
@@ -34,3 +31,10 @@ Feitos
 
 - form-add-transaction.component.ts
   transactions VS transaction (confuso, usar apenas uma); --- ok
+    trocar inicialização do options para poder aceitar mais opções caso o enum seja alterado (loop do enum); --- ok
+
+Olhar
+
+-Revisar máscara: --- olhar lib ngx-currency
+    eu consegui inserir 0,1 ao digitar zero,
+    selecionar tudo e digitar 1, aí ele perde uma casa decimal

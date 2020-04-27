@@ -9,8 +9,8 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
   styleUrls: ['./form-add-transaction.component.scss']
 })
 export class FormAddTransactionComponent implements OnInit {
-  arrayTransaction: Array<NewTransaction> = new Array<NewTransaction>();;
-  options: Array<string> = [OptionsTransaction.Compra, OptionsTransaction.Venda];
+  arrayTransaction: Array<NewTransaction> = new Array<NewTransaction>();
+  options = Object.keys(OptionsTransaction);
   model: NewTransaction = new NewTransaction(this.options[0], '', null);
 
   @Input()
