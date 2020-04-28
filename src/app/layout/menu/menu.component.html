@@ -1,24 +1,23 @@
 <nav class="menu">
-    <div id="menuToggle">
-        <input type="checkbox" class="input-menu"/>
-
-        <span></span>
-        <span></span>
-        <span></span>
-
-        <ul class="menu__items">
-            <li
-                class="menu__items__item"
-                *ngFor="let item of itemsMenu"
-            >
-                <a
-                    [routerLink]="item.rota"
-                    routerLinkActive="router-link-active"
-                    (click)="this.closeMenu()"
-                >
-                 {{ item.name }}
-                </a>
-            </li>
-        </ul>
-    </div>
+  <div id="menuToggle">
+    <input
+      type="checkbox"
+      class="input-menu"
+    />
+    <span class="hamburguer"></span>
+    <ul class="menu__items">
+      <li
+        class="menu__items__item"
+        *ngFor="let item of itemsMenu"
+      >
+        <a
+          [routerLink]="item.rota"
+          routerLinkActive="router-link-active"
+          (click)="this.closeMenu()"
+        >
+          {{ item.name }}
+        </a>
+      </li>
+    </ul>
+  </div>
 </nav>

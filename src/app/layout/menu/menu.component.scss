@@ -84,7 +84,7 @@
   #menuToggle {
     display: block;
     position: relative;
-    top: 10px;
+    top: 17px;
     z-index: 1;
     @include user-select(none);
 
@@ -103,7 +103,7 @@
         & ~ span {
           background: #fff;
           opacity: 1;
-          @include transform(rotate(45deg) translate(3px, -1px));
+          @include transform(rotate(45deg) translate(-3px, -10px));
 
           &:nth-last-child(3) {
             opacity: 0;
@@ -111,7 +111,7 @@
           }
 
           &:nth-last-child(2) {
-            @include transform(rotate(-45deg) translate(4px, 0px));
+            @include transform(rotate(-45deg) translate(-3px, 10px));
           }
         }
 
@@ -154,5 +154,36 @@
         display: none;
       }
     }
+  }
+
+  .hamburguer {
+    &::before,
+    &::after {
+      background: $color-font;
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      transition: .5s ease-in-out;
+      width: 100%;
+    }
+
+    &::before {
+      top: -10px;
+    }
+
+    &::after {
+      bottom: -10px;
+    }
+  }
+
+  input:checked ~ .hamburguer:before {
+    display: none;
+  }
+
+  input:checked ~ .hamburguer:after {
+    background: $color-menu;
+    bottom: 0;
+    transform: rotate(90deg);
   }
 }

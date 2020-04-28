@@ -8,12 +8,11 @@ Desafios:
 	-Criptografar dados no storage
 	-Permitir edição de transações
 	-Ordenar por inserção, alfabeticamente ou por valor (todos podendo fazer normal e de trás pra frente tbm)
-	-Troca os spans vazios do menu por pseudo elementos
 	-Criar um serviço para cuidar das transações
     por observable ao invés de input/output entre componentes
 
-================================
 
+=====================================================================
 Feitos
 
 -Dinheiro sempre tem que mostrar duas casas decimais --- ok
@@ -32,6 +31,9 @@ Feitos
 - form-add-transaction.component.ts
   transactions VS transaction (confuso, usar apenas uma); --- ok
     trocar inicialização do options para poder aceitar mais opções caso o enum seja alterado (loop do enum); --- ok
+
+Desafios
+-Troca os spans vazios do menu por pseudo elementos --- ok
 
 Olhar
 
