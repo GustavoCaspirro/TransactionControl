@@ -1,5 +1,4 @@
 Melhorias:
-	-Fazer o teste passar e escrever testes reais
 	-Utilize a modularização do angular (Criou configurações module mas não tá usando)
 
 	- form-add-transaction.component.ts
@@ -22,6 +21,7 @@ Feitos
 -Limitar o valor a ser inserido (vide imagem) --- ok
 -Corrigir tipagens no serviço de storage --- ok
 -table-transaction.component.ts --> trocar forEach por reduce; --- ok
+-Fazer o teste passar --- ok
 
 -table-transaction.component.ts
   valueTotal - atribuição de variável desnecessária (transactionLength); --- ok
@@ -38,3 +38,5 @@ Olhar
 -Revisar máscara: --- olhar lib ngx-currency
     eu consegui inserir 0,1 ao digitar zero,
     selecionar tudo e digitar 1, aí ele perde uma casa decimal
+
+- escrever testes reais
