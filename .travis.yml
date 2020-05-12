@@ -1,23 +1,25 @@
-dist: trusty
-sudo: true
-
 language: node_js
 node_js:
   - "stable"
 
+sudo: true
+
 addons:
   chrome: stable
 
+branches:
+  only:
+    - master
+
 cache:
   directories:
-  - node_modules
+    - node_modules
 
 before_install:
   - npm install -g @angular/cli
-  - npm install -g karma
 
 install:
- - npm install
+  - npm install
 
 script:
-  - npm run test
+  - npm run test:ci
