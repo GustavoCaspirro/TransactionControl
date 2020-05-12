@@ -1,6 +1,7 @@
 {
-  "name": "financial-control",
+  "name": "transaction-control",
   "version": "0.0.0",
+  "author": "Gustavo Caspirro",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
