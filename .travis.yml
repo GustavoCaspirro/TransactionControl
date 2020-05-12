@@ -1,18 +1,24 @@
+dist: trusty
+sudo: false
+
 language: node_js
 node_js:
-  - "12"
-sudo: required
+  - "10"
+
 addons:
-  chrome: stable
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
 cache:
   directories:
-    - node_modules
-before_install:
-  - npm install -g typescript && tsc -v
-  - npm install -g karma
+    - ./node_modules
+
 install:
   - npm install
+
 script:
-  - npm run test
-  - npm run lint
-  - npm run build
+  - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+  - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
