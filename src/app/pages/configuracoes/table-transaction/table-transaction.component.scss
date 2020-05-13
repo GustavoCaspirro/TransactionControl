@@ -1,10 +1,10 @@
-@import "../../../../assets/styles/base/vars";
-@import "../../../../assets/styles/base/mixins";
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap");
+@import '../../../../assets/styles/base/vars';
+@import '../../../../assets/styles/base/mixins';
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
 
 .transaction {
   color: $color-font;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   margin: 60px auto 25px;
   max-width: 1100px;
   padding: 0 15px;
@@ -88,13 +88,13 @@
         &__item {
           .detail {
             @include flexbox();
-            width: 60%;
+            width: 54%;
           }
 
           .price {
             padding-right: 10px;
             text-align: right;
-            width: 40%;
+            width: 46%;
           }
 
           .apagar-item {
@@ -104,9 +104,25 @@
             padding: 0 10px;
           }
 
-          &.buy { background: #ffdfdf; }
+          .editar-item {
+            a {
+              cursor: pointer;
 
-          &.sell { background: #e4ffea; }
+              svg {
+                height: 15px;
+                margin-left: 10px;
+                width: 15px;
+              }
+            }
+          }
+
+          &.buy {
+            background: #ffdfdf;
+          }
+
+          &.sell {
+            background: #e4ffea;
+          }
 
           &--empty {
             background: #f3f3f3;
@@ -116,7 +132,7 @@
             @include align-items(center);
             @include flexbox();
             @include justify-content(center);
-            @include transition(.3s);
+            @include transition(0.3s);
           }
         }
 
@@ -145,5 +161,4 @@
     color: #b1b1b1;
     margin: 3px 0 15px;
   }
-
 }

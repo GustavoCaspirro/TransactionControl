@@ -1,5 +1,10 @@
 <div class="transaction__add">
-  <form #transactionForm="ngForm" (ngSubmit)="onSubmit()" class="form">
+  <form
+    #transactionForm="ngForm"
+    (ngSubmit)="onSubmit(model)"
+    [ngClass]="{ 'modo-editar': modoEditar }"
+    class="form"
+  >
     <h2 class="transaction__title transaction__title--new">
       <span *ngIf="!modoEditar">Nova Transação</span>
       <span *ngIf="modoEditar">Modo Edição</span>

@@ -21,6 +21,7 @@ export class FormAddTransactionComponent implements OnInit, OnChanges {
   options = Object.keys(OptionsTransaction);
   model: NewTransaction = new NewTransaction(this.options[0], '', null);
   modoEditar = false;
+  indexItemEditado: number;
 
   @Input()
   transaction: Array<NewTransaction>;
@@ -39,14 +40,19 @@ export class FormAddTransactionComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     debugger;
-    this.model.typeTransaction =
-      changes.itemEditado?.currentValue?.item?.typeTransaction;
-    this.model.nameProduct =
-      changes.itemEditado?.currentValue?.item?.nameProduct;
-    this.model.priceProduct =
-      changes.itemEditado?.currentValue?.item?.priceProduct;
+    if (changes?.itemEditado?.currentValue) {
+      this.model.typeTransaction =
+        changes.itemEditado?.currentValue?.item?.typeTransaction;
+      this.model.nameProduct =
+        changes.itemEditado?.currentValue?.item?.nameProduct;
+      this.model.priceProduct =
+        changes.itemEditado?.currentValue?.item?.priceProduct;
 
-    this.editarItem(changes.itemEditado?.currentValue?.item);
+      this.indexItemEditado = changes.itemEditado?.currentValue?.indexItem;
+      this.editarItem(changes.itemEditado?.currentValue?.item);
+    } else {
+      this.model.typeTransaction = this.model.typeTransaction;
+    }
   }
 
   editarItem(item: NewTransaction) {
@@ -67,7 +73,7 @@ export class FormAddTransactionComponent implements OnInit, OnChanges {
   /**
    * Validação do formulário
    */
-  onSubmit(): void {
+  onSubmit(model: NewTransaction): void {
     this.arrayTransaction = this.getData();
 
     const listProduct: NewTransaction = {
@@ -76,8 +82,13 @@ export class FormAddTransactionComponent implements OnInit, OnChanges {
       priceProduct: this.model.priceProduct,
     };
 
-    this.arrayTransaction.unshift(listProduct);
+    this.indexItemEditado !== undefined
+      ? (this.arrayTransaction[this.indexItemEditado] = listProduct)
+      : this.arrayTransaction.unshift(listProduct);
+
     this.storageService.setData('Transações', this.arrayTransaction);
     this.responseTransaction.emit(this.arrayTransaction);
+    this.indexItemEditado = undefined;
+    this.modoEditar = false;
   }
 }
