@@ -4,14 +4,19 @@ import { NewTransaction } from 'src/app/shared/class/transaction/transaction';
 @Component({
   selector: 'app-configuracoes',
   templateUrl: './configuracoes.component.html',
-  styleUrls: ['./configuracoes.component.scss']
+  styleUrls: ['./configuracoes.component.scss'],
 })
 export class ConfiguracoesComponent {
   arrayTransaction: Array<NewTransaction> = new Array<NewTransaction>();
+  itemEditado: object;
 
-  constructor() { }
+  constructor() {}
 
   reciverTransaction(responseTransaction: Array<NewTransaction>) {
     this.arrayTransaction = responseTransaction;
+  }
+
+  editarItem(itemEditado: object) {
+    this.itemEditado = itemEditado;
   }
 }

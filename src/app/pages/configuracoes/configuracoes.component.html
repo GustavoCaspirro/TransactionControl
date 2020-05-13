@@ -2,8 +2,12 @@
   <app-form-add-transaction
     [transaction]="arrayTransaction"
     (responseTransaction)="reciverTransaction($event)"
+    [itemEditado]="itemEditado"
   >
   </app-form-add-transaction>
-  <app-table-transaction [transaction]="arrayTransaction">
+  <app-table-transaction
+    [transaction]="arrayTransaction"
+    (editarItem)="editarItem($event)"
+  >
   </app-table-transaction>
 </section>

@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { NewTransaction } from 'src/app/shared/class/transaction/transaction';
 import { OptionsTransaction } from 'src/app/shared/enums/options.enum';
 import { StorageService } from 'src/app/shared/services/storage/storage.service';
@@ -8,13 +16,17 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
   templateUrl: './form-add-transaction.component.html',
   styleUrls: ['./form-add-transaction.component.scss'],
 })
-export class FormAddTransactionComponent implements OnInit {
+export class FormAddTransactionComponent implements OnInit, OnChanges {
   arrayTransaction: Array<NewTransaction> = new Array<NewTransaction>();
   options = Object.keys(OptionsTransaction);
   model: NewTransaction = new NewTransaction(this.options[0], '', null);
+  modoEditar = false;
 
   @Input()
   transaction: Array<NewTransaction>;
+
+  @Input()
+  itemEditado: object;
 
   @Output()
   responseTransaction = new EventEmitter();
@@ -23,6 +35,26 @@ export class FormAddTransactionComponent implements OnInit {
 
   ngOnInit() {
     this.arrayTransaction = this.getData();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    debugger;
+    this.model.typeTransaction =
+      changes.itemEditado?.currentValue?.item?.typeTransaction;
+    this.model.nameProduct =
+      changes.itemEditado?.currentValue?.item?.nameProduct;
+    this.model.priceProduct =
+      changes.itemEditado?.currentValue?.item?.priceProduct;
+
+    this.editarItem(changes.itemEditado?.currentValue?.item);
+  }
+
+  editarItem(item: NewTransaction) {
+    this.modoEditar = true;
+
+    this.model.typeTransaction = item?.typeTransaction;
+    this.model.nameProduct = item?.nameProduct;
+    this.model.priceProduct = item?.priceProduct;
   }
 
   /**

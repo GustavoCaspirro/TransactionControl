@@ -1,4 +1,12 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { NewTransaction } from 'src/app/shared/class/transaction/transaction';
 import { OptionsTransaction } from 'src/app/shared/enums/options.enum';
 import { StorageService } from 'src/app/shared/services/storage/storage.service';
@@ -6,7 +14,7 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
 @Component({
   selector: 'app-table-transaction',
   templateUrl: './table-transaction.component.html',
-  styleUrls: ['./table-transaction.component.scss']
+  styleUrls: ['./table-transaction.component.scss'],
 })
 export class TableTransactionComponent implements OnInit, OnChanges {
   arrayTransaction: Array<NewTransaction> = new Array<NewTransaction>();
@@ -16,7 +24,10 @@ export class TableTransactionComponent implements OnInit, OnChanges {
   @Input()
   transaction: Array<NewTransaction>;
 
-  constructor(private storageService: StorageService) { }
+  @Output()
+  editarItem = new EventEmitter();
+
+  constructor(private storageService: StorageService) {}
 
   ngOnInit() {
     this.arrayTransaction = this.getData();
@@ -32,15 +43,25 @@ export class TableTransactionComponent implements OnInit, OnChanges {
    * Chama o serviço storageService para a função removeItemData
    */
   removeItemData(indexItem: number): void {
-    this.arrayTransaction = this.storageService.removeItemData(this.keyLocalStorage, indexItem);
+    this.arrayTransaction = this.storageService.removeItemData(
+      this.keyLocalStorage,
+      indexItem
+    );
     this.valueTotal();
+  }
+
+  editaItemData(item: NewTransaction, indexItem: number): void {
+    console.log(`item: ${item} de index : ${indexItem}`);
+    this.editarItem.emit({ item, indexItem });
   }
 
   /**
    * Chama o serviço storageService para a função removeData
    */
   removeData() {
-    this.arrayTransaction = this.storageService.removeData(this.keyLocalStorage);
+    this.arrayTransaction = this.storageService.removeData(
+      this.keyLocalStorage
+    );
     this.valueTotal();
   }
 
@@ -57,12 +78,15 @@ export class TableTransactionComponent implements OnInit, OnChanges {
   valueTotal(): number {
     this.result = 0;
 
-    return this.result = this.arrayTransaction.reduce((previousValue: number, currentValue: NewTransaction) => {
-      if (currentValue.typeTransaction === OptionsTransaction.Compra) {
-        return previousValue -= (+currentValue.priceProduct);
-      } else {
-        return previousValue += currentValue.priceProduct;
-      }
-    }, 0);
+    return (this.result = this.arrayTransaction.reduce(
+      (previousValue: number, currentValue: NewTransaction) => {
+        if (currentValue.typeTransaction === OptionsTransaction.Compra) {
+          return (previousValue -= +currentValue.priceProduct);
+        } else {
+          return (previousValue += currentValue.priceProduct);
+        }
+      },
+      0
+    ));
   }
 }
