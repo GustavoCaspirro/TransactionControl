@@ -1,15 +1,12 @@
 Melhorias:
 	-Utilize a modularização do angular (Criou configurações module mas não tá usando)
 
-	- form-add-transaction.component.ts
-    usar this.getData() menos vezes (de preferencia nenhum);
-
 Desafios:
 	-Criptografar dados no storage
 	-Permitir edição de transações
 	-Ordenar por inserção, alfabeticamente ou por valor (todos podendo fazer normal e de trás pra frente tbm)
 	-Criar um serviço para cuidar das transações
-    por observable ao invés de input/output entre componentes
+    por observable ao invés de input/output entre componentes ""
 
 
 =====================================================================
@@ -30,7 +27,8 @@ Feitos
 
 - form-add-transaction.component.ts
   transactions VS transaction (confuso, usar apenas uma); --- ok
-    trocar inicialização do options para poder aceitar mais opções caso o enum seja alterado (loop do enum); --- ok
+  trocar inicialização do options para poder aceitar mais opções caso o enum seja alterado (loop do enum); --- ok
+  usar this.getData() menos vezes (de preferencia nenhum); --- ok
 
 Desafios
 -Troca os spans vazios do menu por pseudo elementos --- ok

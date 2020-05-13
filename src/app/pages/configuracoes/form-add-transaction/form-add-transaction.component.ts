@@ -6,7 +6,7 @@ import { StorageService } from 'src/app/shared/services/storage/storage.service'
 @Component({
   selector: 'app-form-add-transaction',
   templateUrl: './form-add-transaction.component.html',
-  styleUrls: ['./form-add-transaction.component.scss']
+  styleUrls: ['./form-add-transaction.component.scss'],
 })
 export class FormAddTransactionComponent implements OnInit {
   arrayTransaction: Array<NewTransaction> = new Array<NewTransaction>();
@@ -19,7 +19,7 @@ export class FormAddTransactionComponent implements OnInit {
   @Output()
   responseTransaction = new EventEmitter();
 
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService) {}
 
   ngOnInit() {
     this.arrayTransaction = this.getData();
@@ -36,17 +36,16 @@ export class FormAddTransactionComponent implements OnInit {
    * Validação do formulário
    */
   onSubmit(): void {
-    const dataTransaction: NewTransaction[] = this.getData();
+    this.arrayTransaction = this.getData();
 
     const listProduct: NewTransaction = {
       typeTransaction: this.model.typeTransaction,
       nameProduct: this.model.nameProduct,
-      priceProduct: this.model.priceProduct
+      priceProduct: this.model.priceProduct,
     };
 
-    dataTransaction.unshift(listProduct);
-    this.storageService.setData('Transações', dataTransaction);
-    this.arrayTransaction = this.getData();
+    this.arrayTransaction.unshift(listProduct);
+    this.storageService.setData('Transações', this.arrayTransaction);
     this.responseTransaction.emit(this.arrayTransaction);
   }
 }
