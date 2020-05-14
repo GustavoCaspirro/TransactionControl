@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "caspirro-transaction-control",
+    "caspirro-transaction-control": "caspirro-transaction-control"
+  }
+}

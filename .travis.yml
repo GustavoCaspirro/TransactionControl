@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "stable"
+  - 'stable'
 
 sudo: true
 
@@ -16,10 +16,15 @@ cache:
     - node_modules
 
 before_install:
-  - npm install -g @angular/cli
+  - npm install -g --silent firebase-tools
+  - npm install -g --silent @angular/cli
 
 install:
   - npm install
+  - ng build --prod
 
 script:
   - npm run test:ci
+
+after_success:
+  - test $TRAVIS_BRANCH="master" && test $TRAVIS_PULL_REQUEST="false" && firebase deploy --token $FIREBASE_TOKEN --non-interactive
