@@ -1,41 +1,40 @@
-@import "../../../assets/styles/base/vars";
-@import "../../../assets/styles/base/mixins";
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap");
+@import '../../../assets/styles/base/vars';
+@import '../../../assets/styles/base/mixins';
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap');
 
 .header {
-    background: $color-menu;
-    color: $color-font;
-    font-family: 'Lato', sans-serif;
-    box-sizing: border-box;
-    padding: 10px 15px;
-    position: fixed;
-    top: 0;
-    width: 100%;
+  background: $color-menu;
+  color: $color-font;
+  font-family: 'Lato', sans-serif;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  position: fixed;
+  top: 0;
+  width: 100%;
 
-    .content {
-        margin: 0 auto;
-        @include flexbox;
-        @include justify-content(space-between);
-        @media (min-width: $mindesktop) {
-            max-width: 1100px;
-        }
-        .logo {
-            text-decoration: none;
-            @include flexbox;
-            @include align-items(center);
-
-            &__img {
-                background: #f00;
-                display: block;
-                max-width: 40px;
-                height: 40px;
-                width: 40px;
-            }
-
-            &__title {
-                font-size: 20px;
-                margin-left: 20px;
-            }
-        }
+  .content {
+    margin: 0 auto;
+    @include flexbox;
+    @include justify-content(space-between);
+    @media (min-width: $mindesktop) {
+      max-width: 1100px;
     }
+    .logo {
+      text-decoration: none;
+      @include flexbox;
+      @include align-items(center);
+
+      &__img {
+        display: block;
+        max-width: 40px;
+        height: 40px;
+        width: 40px;
+      }
+
+      &__title {
+        font-size: 20px;
+        margin-left: 20px;
+      }
+    }
+  }
 }
