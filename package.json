@@ -4,7 +4,7 @@
   "author": "Gustavo Caspirro",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "dev": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "test:ci": "ng test --watch false --browsers ChromeHeadless",
