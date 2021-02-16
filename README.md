@@ -2,7 +2,7 @@
 
 ![N|Solid](src/assets/images/tela-transacoes.gif)
 
-Preview: [Acesse o Preview da POC de PWA](https://laughing-banach-31f778.netlify.app/)
+Preview: [Acesse o Preview da aplicação sobre transações](https://caspirro-transaction-control.web.app/)
 
 ## Sobre a Aplicação
 
