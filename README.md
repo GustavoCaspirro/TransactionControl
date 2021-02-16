@@ -2,6 +2,8 @@
 
 ![N|Solid](src/assets/images/tela-transacoes.gif)
 
+Preview: [Acesse o Preview da POC de PWA](https://laughing-banach-31f778.netlify.app/)
+
 ## Sobre a Aplicação
 
 - Aplicação que realiza transações de compra e venda persistindo os dados no LocalStorage, após consulta esses dados são apresentados em uma tabela.
